@@ -250,16 +250,11 @@ function parseCSV(csv) {
     const obj = {};
     headers.forEach((h, i) => { obj[h] = (cols[i] || "").trim().replace(/^"|"$/g, ""); });
     return {
-      name:    obj["企業名"]   || "",
+      name:    obj["顧客名"]   || "",
       address: obj["住所"]     || "",
-      tel:     obj["代表番号"] || "",
-      closed:  obj["定休日"]   || "",
-      orderDate: obj["受注日"] || "",
-      product: obj["商品"]     || "",
-      payment: obj["支払い方法"] || "",
-      amount:  obj["支払い金額"] || "",
-      installDate: obj["設置日"] || "",
-      rep:     obj["担当者"]   || "",
+      product: obj["分類"]     || "",
+      orderDate: obj["申込日"] || "",
+      rep:     obj["営業担当"] || "",
       lat:     parseFloat(obj["緯度"]) || null,
       lng:     parseFloat(obj["経度"]) || null,
     };
@@ -347,14 +342,9 @@ function renderMarkers(companies) {
       const info = `
         <div style="min-width:220px;font-family:-apple-system,sans-serif;padding:4px 2px">
           <div style="font-size:15px;font-weight:600;margin-bottom:8px;color:#202124">${c.name}</div>
-          ${c.product     ? `<div style="font-size:12px;color:#1a73e8;margin-bottom:3px">商品: ${c.product}</div>` : ""}
-          ${c.rep         ? `<div style="font-size:12px;color:#5f6368;margin-bottom:3px">担当者: ${c.rep}</div>` : ""}
-          ${c.orderDate   ? `<div style="font-size:12px;color:#5f6368;margin-bottom:3px">受注日: ${c.orderDate}</div>` : ""}
-          ${c.installDate ? `<div style="font-size:12px;color:#5f6368;margin-bottom:3px">設置日: ${c.installDate}</div>` : ""}
-          ${c.tel         ? `<div style="font-size:12px;color:#5f6368;margin-bottom:3px">TEL: ${c.tel}</div>` : ""}
-          ${c.closed      ? `<div style="font-size:12px;color:#5f6368;margin-bottom:3px">定休日: ${c.closed}</div>` : ""}
-          ${c.payment     ? `<div style="font-size:12px;color:#5f6368;margin-bottom:3px">支払い: ${c.payment}</div>` : ""}
-          ${c.amount      ? `<div style="font-size:12px;color:#5f6368;margin-bottom:3px">金額: ${c.amount}</div>` : ""}
+          ${c.product     ? `<div style="font-size:12px;color:#1a73e8;margin-bottom:3px">分類: ${c.product}</div>` : ""}
+          ${c.rep         ? `<div style="font-size:12px;color:#5f6368;margin-bottom:3px">担当: ${c.rep}</div>` : ""}
+          ${c.orderDate   ? `<div style="font-size:12px;color:#5f6368;margin-bottom:3px">申込日: ${c.orderDate}</div>` : ""}
           ${c.address     ? `<div style="font-size:11px;color:#80868b;margin-top:6px;border-top:1px solid #e8eaed;padding-top:6px">${c.address}</div>` : ""}
         </div>
       `;
