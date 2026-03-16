@@ -187,7 +187,7 @@
 
 <div id="map"></div>
 <div id="legend">
-  <div class="legend-item"><div class="legend-dot" style="background:#4285F4"></div>LEDパネル</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#4285F4"></div>LEDライトパネル</div>
   <div class="legend-item"><div class="legend-dot" style="background:#EA4335"></div>LEDビジョン</div>
   <div class="legend-item"><div class="legend-dot" style="background:#34A853"></div>タッチパネル</div>
   <div class="legend-item"><div class="legend-dot" style="background:#888"></div>その他</div>
@@ -221,7 +221,7 @@ function createPinIcon(color) {
 function getMarkerColor(product) {
   if (!product) return "#888888";
   const p = product.split(",")[0].trim();
-  if (p.includes("LEDパネル")) return "#4285F4";
+  if (p.includes("LEDライトパネル")) return "#4285F4";
   if (p.includes("LEDビジョン")) return "#EA4335";
   if (p.includes("タッチパネル")) return "#34A853";
   return "#888888";
@@ -397,7 +397,7 @@ function selectItem(idx) {
 }
 
 function buildFilters(companies) {
-  const allowedProducts = ["LEDパネル", "LEDビジョン", "タッチパネル"];
+  const allowedProducts = ["LEDライトパネル", "LEDビジョン", "タッチパネル"];
   const productSet = new Set();
   companies.forEach(c => {
     if (c.product) c.product.split(",").map(p => p.trim()).filter(p => allowedProducts.includes(p)).forEach(p => productSet.add(p));
