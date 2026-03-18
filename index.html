@@ -257,9 +257,10 @@ function parseCSV(csv) {
     return {
       name:    obj["顧客名"]   || "",
       address: obj["住所"]     || "",
-      product: obj["分類"]     || "",
+      product: (obj["分類"] || "").includes("安保さんに確認") ? "LEDビジョン" : (obj["分類"] || ""),
       orderDate: obj["申込日"] || "",
       rep:     obj["営業担当"] || "",
+      note:    obj["備考"]     || "",
       lat:     parseFloat(obj["緯度"]) || null,
       lng:     parseFloat(obj["経度"]) || null,
     };
@@ -350,6 +351,7 @@ function renderMarkers(companies) {
           ${c.product     ? `<div style="font-size:12px;color:#1a73e8;margin-bottom:3px">分類: ${c.product}</div>` : ""}
           ${c.rep         ? `<div style="font-size:12px;color:#5f6368;margin-bottom:3px">担当: ${c.rep}</div>` : ""}
           ${c.orderDate   ? `<div style="font-size:12px;color:#5f6368;margin-bottom:3px">申込日: ${c.orderDate}</div>` : ""}
+          ${c.note        ? `<div style="font-size:12px;color:#c5221f;margin-bottom:3px">備考: ${c.note}</div>` : ""}
           ${c.address     ? `<div style="font-size:11px;color:#80868b;margin-top:6px;border-top:1px solid #e8eaed;padding-top:6px">${c.address}</div>` : ""}
         </div>
       `;
@@ -377,6 +379,7 @@ function renderList(companies) {
       ${c.product   ? `<div class="company-product">${c.product}</div>` : ""}
       ${c.rep       ? `<div class="company-rep">担当: ${c.rep}</div>` : ""}
       ${c.orderDate ? `<div class="company-date">受注日: ${c.orderDate}</div>` : ""}
+      ${c.note      ? `<div class="company-date" style="color:#c5221f">備考: ${c.note}</div>` : ""}
     `;
     item.addEventListener("click", () => {
       selectItem(idx);
